@@ -13,6 +13,7 @@ import os
 import re
 import csv
 import threading
+import webbrowser # <--- Añadido para que el enlace a tu LinkedIn funcione
 
 # Si te da error de importación, necesitas instalar estas librerías:
 # pip install ifcopenshell trimesh "pyglet<2" networkx
@@ -105,12 +106,15 @@ class AppAparejadorBIM:
         # Creamos los frames para cada pestaña
         self.tab_calc = ttk.Frame(self.notebook, padding=10)
         self.tab_visor = ttk.Frame(self.notebook, padding=10)
+        self.tab_acerca = ttk.Frame(self.notebook, padding=10) # <--- Nueva pestaña
 
         self.notebook.add(self.tab_calc, text=" 📊 Calculadora y Extractor ")
         self.notebook.add(self.tab_visor, text=" 👁️ Visor 3D Rápido ")
+        self.notebook.add(self.tab_acerca, text=" ℹ️ Acerca de... ")
 
         self.construir_pestaña_calculadora()
         self.construir_pestaña_visor()
+        self.construir_pestaña_acerca() # <--- Construir contenido
 
     def construir_pestaña_calculadora(self):
         # --- PANEL SUPERIOR: Archivo ---
@@ -154,6 +158,26 @@ class AppAparejadorBIM:
         self.btn_abrir_visor.pack(pady=20, ipady=15, ipadx=30)
         
         ttk.Label(self.tab_visor, text="💡 Un consejo: Al abrir el visor, usa el ratón para rotar y la rueda para el zoom.\nCierra la ventana del 3D cuando termines para volver aquí.", justify=tk.CENTER, foreground="gray").pack(pady=30)
+
+    def construir_pestaña_acerca(self):
+        # --- PESTAÑA DEL AUTOR ---
+        frame_centro = ttk.Frame(self.tab_acerca)
+        frame_centro.pack(expand=True)
+
+        ttk.Label(frame_centro, text="👨‍💻 Autor", font=('Segoe UI', 18, 'bold')).pack(pady=(0, 20))
+        
+        ttk.Label(frame_centro, text="Jose Manuel Caamaño González", font=('Segoe UI', 14, 'bold')).pack(pady=2)
+        ttk.Label(frame_centro, text="Arquitecto Técnico & BIM Manager", font=('Segoe UI', 12), foreground="#444444").pack(pady=(0, 15))
+        
+        desc = "Digital Product Lead | ConTech & Digital Twin SaaS\nBIM, Energy Modeling & Sustainability | Data Analytics (SQL, Power BI)"
+        ttk.Label(frame_centro, text=desc, font=('Segoe UI', 10), justify=tk.CENTER).pack(pady=10)
+        
+        ttk.Label(frame_centro, text="Hecho con código y café desde A Coruña. ☕", font=('Segoe UI', 11, 'italic'), foreground='gray').pack(pady=25)
+
+        # Enlace a LinkedIn
+        lbl_linkedin = ttk.Label(frame_centro, text="🔗 Conectar en LinkedIn", font=('Segoe UI', 11, 'underline'), foreground="#0077b5", cursor="hand2")
+        lbl_linkedin.pack(pady=10)
+        lbl_linkedin.bind("<Button-1>", lambda e: webbrowser.open_new("https://www.linkedin.com/in/jmcaamanog/"))
 
     def seleccionar_archivo(self):
         ruta = filedialog.askopenfilename(title="Jose, elige el archivo IFC", filetypes=[("Archivos IFC", "*.ifc"), ("Todos los archivos", "*.*")])

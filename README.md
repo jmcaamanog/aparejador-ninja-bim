@@ -6,35 +6,50 @@
 ![Trimesh](https://img.shields.io/badge/3D-Trimesh-orange.svg)
 ![License](https://img.shields.io/badge/License-MIT-green.svg)
 
-(Arquitecto Técnico_JMC) Herramienta de escritorio irreverente y directa al grano para auditar modelos BIM en formato IFC. Diseñada para extraer mediciones rápidas, evaluar el comportamiento térmico básico de la fachada y generar presupuestos estimativos al vuelo[cite: 9].
+(Arquitecto Técnico_JMC) Herramienta de escritorio irreverente y directa al grano para auditar modelos BIM en formato IFC. Diseñada para extraer mediciones rápidas, evaluar el comportamiento térmico básico de la fachada y generar presupuestos estimativos al vuelo
+
+Echa un vistazo a las capturas en la carpeta **CAPTURAS**.
 
 ## 🚀 Características Principales
 
-*   **Radiografía BIM Automática:** Extrae y contabiliza elementos constructivos clave (muros, forjados, pilares, ventanas, etc.) sumando sus superficies útiles reales[cite: 9].
-*   **Índice de "Ruina Térmica":** Calcula automáticamente el ratio de huecos (superficie de ventanas frente a muros) para advertir sobre posibles problemas de climatización[cite: 9].
-*   **Generador GLB y Visor 3D:** Aísla las entidades `IfcSpace` (estancias), extrae su geometría tridimensional y las exporta a un archivo `.glb` universal, permitiendo además su visualización instantánea mediante Trimesh[cite: 9].
-*   **Presupuestador al Vuelo ("La Dolorosa"):** A partir de un coste de construcción estimado (€/m²) y un porcentaje de honorarios, reparte el peso económico por partidas y exporta un archivo CSV listo para abrir en Excel[cite: 9].
-*   **Consola de Log Integrada:** Registro de operaciones en tiempo real con mensajes directos e informativos sobre el estado del procesamiento[cite: 9].
+*   **Radiografía BIM Automática:** Extrae y contabiliza elementos constructivos clave (muros, forjados, pilares, ventanas, etc.) sumando sus superficies útiles reales.
+*   **Índice de "Ruina Térmica":** Calcula automáticamente el ratio de huecos (superficie de ventanas frente a muros) para advertir sobre posibles problemas de climatización.
+*   **Generador GLB y Visor 3D:** Aísla las entidades `IfcSpace` (estancias), extrae su geometría tridimensional y las exporta a un archivo `.glb` universal, permitiendo además su visualización instantánea mediante Trimesh.
+*   **Presupuestador al Vuelo ("La Dolorosa"):** A partir de un coste de construcción estimado (€/m²) y un porcentaje de honorarios, reparte el peso económico por partidas y exporta un archivo CSV listo para abrir en Excel.
+*   **Consola de Log Integrada:** Registro de operaciones en tiempo real con mensajes directos e informativos sobre el estado del procesamiento.
 
 ## 🛠️ Stack Tecnológico
 
-*   **Tkinter:** Interfaz gráfica nativa con sistema de pestañas (Calculadora y Visor)[cite: 9].
-*   **IfcOpenShell:** Motor pesado para la lectura de datos, propiedades paramétricas y parseo geométrico del archivo IFC[cite: 9].
-*   **Trimesh & NetworkX:** Librerías matemáticas encargadas de agrupar vértices y caras para la reconstrucción, renderizado 3D y exportación de la malla a formato GLB[cite: 9].
+*   **Tkinter:** Interfaz gráfica nativa con sistema de pestañas (Calculadora y Visor).
+*   **IfcOpenShell:** Motor pesado para la lectura de datos, propiedades paramétricas y parseo geométrico del archivo IFC.
+*   **Trimesh & NetworkX:** Librerías matemáticas encargadas de agrupar vértices y caras para la reconstrucción, renderizado 3D y exportación de la malla a formato GLB.
 
 ## ⚙️ Instalación y Uso
 
 1. Clona este repositorio en tu equipo:
    ```bash
-   git clone [https://github.com/TU_USUARIO/aparejador-ninja-bim.git](https://github.com/TU_USUARIO/aparejador-ninja-bim.git)
-
-2. Instala las dependencias necesarias. Es crítico instalar una versión específica de pyglet para asegurar la compatibilidad del visor 3D[cite: 9]:
+   git clone [https://github.com/jmcaamanog/aparejador-ninja-bim.git](https://github.com/TU_USUARIO/aparejador-ninja-bim.git)
+2. Instala las dependencias necesarias. Es crítico instalar una versión específica de pyglet para asegurar la compatibilidad del visor 3D:
    ```bash
    pip install ifcopenshell trimesh "pyglet<2" networkx
-
 3. Ejecuta la aplicación:
    ```bash
    python nombre_del_archivo.py
+## 📦 Compilar a Ejecutable (.exe) para Windows
+
+Si quieres distribuir la aplicación sin que los usuarios tengan que lidiar con Python o la terminal, puedes empaquetar el código en un único ejecutable.
+
+1. Instala PyInstaller en tu entorno:
+
+   ```bash
+   pip install pyinstaller
+2. Sitúate en la carpeta del proyecto donde están el script y el archivo app_icon.ico, y ejecuta::
+
+   ```bash
+   pyinstaller --noconsole --onefile --icon=app_icon.ico MEDICIONES-IFC_PARA_ARQUITECTOS_TECNICOS.py
+El archivo `.exe` final se generará automáticamente dentro de la carpeta dist. Ya estará listo para compartir y hacer doble clic.
+
+Debido al limite de almacenanmiento de GITHUB no puedo subir el ejecutable, pero siguiendo las instrucciones, lo teneis en unos min. XD
 
 ## 👨‍💻 Autor
 
